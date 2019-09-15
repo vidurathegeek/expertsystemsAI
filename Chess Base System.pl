@@ -1,6 +1,3 @@
-%To Start the system type start.
-% Name : - vidurathegeek
-
 :- use_module(library(jpl)).
 start :-sleep(0.4),	
 		write('-----------------------------------------------------------------'),nl,
@@ -17,7 +14,7 @@ start :-sleep(0.4),
 		interface2.
 		
 		
-       /* hypothesis(Player,Opening),
+       /* openingx(Player,Opening),
         write(Player),write(', you are '), write(' probably playing '),write(Opening),write('.'),undo,
 		nl,nl,nl,
 		sleep(0.7),
@@ -28,58 +25,60 @@ start :-sleep(0.4),
 		write('*****************************************************************'),nl.*/
         
         
-    symptom(Player,e4) :- verify(Player," playing e4 (y/n) ?").
+    movex(Player,e4) :- verify(Player," playing e4 (y/n) ?").
  
-    symptom(Player,c5) :- verify(Player," playing c5 (y/n) ?").
+    movex(Player,c5) :- verify(Player," playing c5 (y/n) ?").
   
-    symptom(Player,nf3) :- verify(Player," playing nf3 (y/n) ?").
+    movex(Player,nf3) :- verify(Player," playing nf3 (y/n) ?").
 
-    symptom(Player,nc3) :- verify(Player," playing nc3 (y/n) ?").
+    movex(Player,nc3) :- verify(Player," playing nc3 (y/n) ?").
     
-    symptom(Player,d5) :- verify(Player," playing d5 (y/n) ?").
+    movex(Player,d5) :- verify(Player," playing d5 (y/n) ?").
     
-    symptom(Player,exd5) :- verify(Player," playing exd5 (y/n) ?").
+    movex(Player,exd5) :- verify(Player," playing exd5 (y/n) ?").
 	
-    symptom(Player,d4) :- verify(Player," playing d4 (y/n) ?").
+    movex(Player,d4) :- verify(Player," playing d4 (y/n) ?").
  
-    symptom(Player,d5) :- verify(Player," playing d5 (y/n) ?").
+    movex(Player,d5) :- verify(Player," playing d5 (y/n) ?").
    
-    symptom(Player,c4) :- verify(Player," playing c4 (y/n) ?").
+    movex(Player,c4) :- verify(Player," playing c4 (y/n) ?").
   
-    symptom(Player,dxc4) :- verify(Player," playing dxc4 (y/n) ?").
+    movex(Player,dxc4) :- verify(Player," playing dxc4 (y/n) ?").
    
-    symptom(Player,e6) :- verify(Player," playing e6 (y/n) ?").
+    movex(Player,e6) :- verify(Player," playing e6 (y/n) ?").
 	
-	/*symptom(_,"Sorry, I don't seem to be able to diagnose the Opening.").*/
+	/*movex(_,"Sorry, I don't seem to be able to diagnose the Opening.").*/
 
         
-    hypothesis(Player,silicianClosed) :-
-        symptom(Player,e4),
-        symptom(Player,c5),
-        symptom(Player,nc3).
+    openingx(Player,silicianClosed) :-
+        movex(Player,e4),
+        movex(Player,c5),
+        movex(Player,nc3).
     
-    hypothesis(Player,silicianOpen) :-
-        symptom(Player,e4),
-        symptom(Player,c5),
-        symptom(Player,nf3).
+    openingx(Player,silicianOpen) :-
+        movex(Player,e4),
+        movex(Player,c5),
+        movex(Player,nf3).
         
-    hypothesis(Player,queensgambitExcepted) :-
-        symptom(Player,d4),
-        symptom(Player,c4),
-        symptom(Player,dxc4).
+    openingx(Player,queensgambitExcepted) :-
+        movex(Player,d4),
+        movex(Player,d5),
+        movex(Player,c4),
+        movex(Player,dxc4).
         
-    hypothesis(Player,queensgambitDecline) :-
-        symptom(Player,d4),
-        symptom(Player,c4),
-        symptom(Player,e5).
+    openingx(Player,queensgambitDecline) :-
+        movex(Player,d4),
+        movex(Player,d5),
+        movex(Player,c4),
+        movex(Player,e6).
         
-    hypothesis(Player,centerCounterDefense) :-
-        symptom(Player,e4),
-        symptom(Player,d5),
-        symptom(Player,exd5).
+    openingx(Player,centerCounterDefense) :-
+        movex(Player,e4),
+        movex(Player,d5),
+        movex(Player,exd5).
 
         
-	hypothesis(_,"good opening. But I'm Sorry, I don't seem to be able to identify the Opening").
+	openingx(_,"good opening. But I'm Sorry, I don't seem to be able to identify the Opening").
 	
     response(Reply) :-
         read(Reply),
@@ -120,7 +119,7 @@ undo.
 
 pt(Player):- 
 
-		hypothesis(Player,Opening),
+		openingx(Player,Opening),
 		interface3(Player,', you probably playing ',Opening,'.'),
         write(Player),write(', you probably playing '),write(Opening),write('.'),undo,end.
 
@@ -141,8 +140,8 @@ interface(X,Y,Z) :-
 	jpl_new('javax.swing.JPanel',[],Pan),
 	jpl_call(Pan,add,[LBL],_),
 	jpl_call(F,add,[Pan],_),
-	jpl_call(F, setLocation, [400,300], _),
-	jpl_call(F, setSize, [400,300], _),
+	jpl_call(F, setLocation, [500,500], _),
+	jpl_call(F, setSize, [500,500], _),
 	jpl_call(F, setVisible, [@(true)], _),
 	jpl_call(F, toFront, [], _),
 	jpl_call('javax.swing.JOptionPane', showInputDialog, [F,FinalAtom], N),
@@ -159,8 +158,8 @@ interface2 :-
 	jpl_new('javax.swing.JPanel',[],Pan),
 	jpl_call(Pan,add,[LBL],_),
 	jpl_call(F,add,[Pan],_),
-	jpl_call(F, setLocation, [400,300], _),
-	jpl_call(F, setSize, [400,300], _),
+	jpl_call(F, setLocation, [500,500], _),
+	jpl_call(F, setSize, [500,500], _),
 	jpl_call(F, setVisible, [@(true)], _),
 	jpl_call(F, toFront, [], _),
 	jpl_call('javax.swing.JOptionPane', showInputDialog, [F,'Hello Chessmaster, what is your name :'], N),
@@ -181,8 +180,8 @@ interface3(P,W1,D,W2) :-
 	jpl_new('javax.swing.JPanel',[],Pan),
 	jpl_call(Pan,add,[LBL],_),
 	jpl_call(F,add,[Pan],_),
-	jpl_call(F, setLocation, [400,300], _),
-	jpl_call(F, setSize, [400,300], _),
+	jpl_call(F, setLocation, [500,500], _),
+	jpl_call(F, setSize, [500,500], _),
 	jpl_call(F, setVisible, [@(true)], _),
 	jpl_call(F, toFront, [], _),
 	jpl_call('javax.swing.JOptionPane', showMessageDialog, [F,W3], N),
