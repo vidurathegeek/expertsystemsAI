@@ -1,10 +1,8 @@
 :- use_module(library(jpl)).
-start :-sleep(0.4),	
-		write('-----------------------------------------------------------------'),nl,
-		sleep(0.2),
-		write("###################||| Chess Openings Base |||###################"),nl,
+start :-sleep(0.2),
+		write("------------------     Welcome Chessmaster     -------------------"),nl,
 		sleep(0.4),
-		write('-----------------------------------------------------------------'),nl,nl,nl,
+		write('------------------------------------------------------------------'),nl,nl,nl,
 		
 		
         /*write("Hello Chessmaster, what's your name : "),
@@ -18,11 +16,9 @@ start :-sleep(0.4),
         write(Player),write(', you are '), write(' probably playing '),write(Opening),write('.'),undo,
 		nl,nl,nl,
 		sleep(0.7),
-		write('*****************************************************************'),nl,
+		write('------------------------------------------------------------------'),nl,
 		sleep(0.4),
-		write("################||| THANK YOU FOR USE ME |||#####################"),nl,
-		sleep(0.4),
-		write('*****************************************************************'),nl.*/
+		write("------------------    Play Well Chessmaster    -------------------"),nl.*/
         
         
     movex(Player,e4) :- verify(Player," playing e4 (y/n) ?").
@@ -46,6 +42,34 @@ start :-sleep(0.4),
     movex(Player,dxc4) :- verify(Player," playing dxc4 (y/n) ?").
    
     movex(Player,e6) :- verify(Player," playing e6 (y/n) ?").
+
+    movex(Player,c6) :- verify(Player," playing c6 (y/n) ?").
+
+    movex(Player,nc6) :- verify(Player," playing nc6 (y/n) ?").
+
+    movex(Player,g3) :- verify(Player," playing g3 (y/n) ?").
+
+    movex(Player,bg2) :- verify(Player," playing bg2 (y/n) ?").
+
+    movex(Player,nf6) :- verify(Player," playing nf6 (y/n) ?").
+
+    movex(Player,d6) :- verify(Player," playing d6 (y/n) ?").
+
+    movex(Player,dxe5) :- verify(Player," playing dxe5 (y/n) ?").
+
+    movex(Player,g6) :- verify(Player," playing g6 (y/n) ?").
+
+    movex(Player,bg7) :- verify(Player," playing bg7 (y/n) ?").
+
+    movex(Player,bc4) :- verify(Player," playing bc4 (y/n) ?").
+
+    movex(Player,bc5) :- verify(Player," playing bc5 (y/n) ?").
+
+    movex(Player,bb5) :- verify(Player," playing bb5 (y/n) ?").
+
+    movex(Player,f4) :- verify(Player," playing f4 (y/n) ?").
+
+    movex(Player,exf4) :- verify(Player," playing exf4 (y/n) ?").
 	
 	/*movex(_,"Sorry, I don't seem to be able to diagnose the Opening.").*/
 
@@ -77,8 +101,96 @@ start :-sleep(0.4),
         movex(Player,d5),
         movex(Player,exd5).
 
+    openingx(Player,caroCan) :-
+        movex(Player,e4),
+        movex(Player,c6),
+        movex(Player,d4),
+        movex(Player,d5).
+
+    openingx(Player,frenchDefense) :-
+        movex(Player,e4),
+        movex(Player,e6),
+        movex(Player,d4),
+        movex(Player,d5),
+        movex(Player,exd5).
+
+    openingx(Player,advanceFrenchDefense) :-
+        movex(Player,e4),
+        movex(Player,e6),
+        movex(Player,d4),
+        movex(Player,d5),
+        movex(Player,e5).
+
+    openingx(Player,retiOpening) :-
+        movex(Player,nf3),
+        movex(Player,d5),
+        movex(Player,g3),
+        movex(Player,nc6),
+        movex(Player,bg2).
+
+    openingx(Player,englishOpening) :-
+        movex(Player,c4),
+        movex(Player,e5),
+        movex(Player,nc3),
+        movex(Player,nf6),
+        movex(Player,d4).
+
+    openingx(Player,englishOpening) :-
+        movex(Player,c4),
+        movex(Player,e5),
+        movex(Player,nc3),
+        movex(Player,nf6),
+        movex(Player,d4).
+
+    openingx(Player,perkDefense) :-
+        movex(Player,e4),
+        movex(Player,d6),
+        movex(Player,d4),
+        movex(Player,e5),
+        movex(Player,dxe5).
+
+    openingx(Player,kingsIndianDefense) :-
+        movex(Player,d4),
+        movex(Player,nf6),
+        movex(Player,nc3),
+        movex(Player,g6),
+        movex(Player,e4),
+        movex(Player,d6),
+        movex(Player,nf3),
+        movex(Player,bg7).
+
+    openingx(Player,guicoPiano) :-
+        movex(Player,e4),
+        movex(Player,e5),
+        movex(Player,nf3),
+        movex(Player,nc6),
+        movex(Player,bc4),
+        movex(Player,bc5).
+
+    openingx(Player,ruilLopez) :-
+        movex(Player,e4),
+        movex(Player,e5),
+        movex(Player,nf3),
+        movex(Player,nc6),
+        movex(Player,bb5).
+
+    openingx(Player,italianGame) :-
+        movex(Player,e4),
+        movex(Player,e5),
+        movex(Player,nf3),
+        movex(Player,nc6),
+        movex(Player,nc3),
+        movex(Player,nf6),
+        movex(Player,bc4),
+        movex(Player,bc5).
+
+    openingx(Player,kingsGambit) :-
+        movex(Player,e4),
+        movex(Player,e5),
+        movex(Player,f4),
+        movex(Player,exf4).
         
-	openingx(_,"good opening. But I'm Sorry, I don't seem to be able to identify the Opening").
+	openingx(_,"may be a good opening. But I'm Sorry, I don't seem to be able to identify the opening your are  trying to play.").
 	
     response(Reply) :-
         read(Reply),
@@ -126,11 +238,9 @@ pt(Player):-
 end :-
 		nl,nl,nl,
 		sleep(0.7),
-		write('*****************************************************************'),nl,
+		write('------------------------------------------------------------------'),nl,
 		sleep(0.4),
-		write("################||| THANK YOU FOR USE ME |||#####################"),nl,
-		sleep(0.4),
-		write('*****************************************************************'),nl.
+		write("------------------    Play Well Chessmaster    -------------------"),nl.
 
 interface(X,Y,Z) :-
 	atom_concat(Y,X, FAtom),
